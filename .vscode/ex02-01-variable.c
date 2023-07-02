@@ -8,7 +8,15 @@
 
 변수 선언 및 초기화
     자료형 변수명 = 값
-    
+
+변수명 규칙
+    알파벳, 숫자, 언더바(_) 로만 구성.
+    숫자로 시작 (X)
+    공백 포함 (X)
+    키워드 변수명 (X)
+
+주의: C언어는 알파벳 대/소문자 구분한다.
+        
 */
 
 #include <stdio.h>
@@ -33,6 +41,18 @@ int main(void)
     printf("%d\n", number4);
     printf("%d\n", number5);
     
+    /* 사용 가능한 변수명들 */
+    int num = 3; // int는 '정수'를 의미하는 자료형
+    int number6 = 6;
+    int num_ber = 10;
+    int Number = 15;
+
+    /* 사용 불가한 변수명들 */
+    // Ctrl + / 주석 단축키
+    // int hello boy = 3; // 공백포함
+    // int hi#$ = 5; // 특수기호 사용
+    // int 8number = 8; // 숫자로 시작
+    // int short = 3; // 기능이 있는 키워드
 
     return 0;
 }
