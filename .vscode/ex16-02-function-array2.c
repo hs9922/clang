@@ -3,7 +3,7 @@
 */
 #include <stdio.h>
 
-int readArray(int* arr, int length) // int arr[] = 00000000005ffe90  int length
+int readArray(int arr[], int length) // int arr[] = 00000000005ffe90  int length
 {
     int i;
     printf("배열의 요소 읽어보기: [ ");

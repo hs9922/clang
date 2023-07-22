@@ -19,7 +19,7 @@ void printNumber(int num)
 // 반환값만 존재하는경우
 int inputNumber(void)
 {
-    int numb;
+    int num;
     printf("정수를 입력해 주세요: ");
     scanf("%d", &num);
 
@@ -29,7 +29,7 @@ int inputNumber(void)
 int main(void)
 {
     guide();
-    int num = inputNumber
+    int num = inputNumber;
     printNumber(5);
 
     return 0;
