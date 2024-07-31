@@ -21,12 +21,15 @@ class Bank
 	{
 		return money;
 	}
-	
-	//addMoney()메서드가 동기화
-	public synchronized void addMoney(int money)
+	public void addMoney(int money)
 	{
 		this.money += money; 
 	}
+	//addMoney()메서드가 동기화
+	/*public synchronized void addMoney(int money)
+	{
+		this.money += money; 
+	}*/
 }
 
 
@@ -43,10 +46,28 @@ class AddThread implements Runnable
 	@Override
 	public void run()
 	{
+		// 블록 동기화: 스레드의 간섭을 막기 위해서
+		// 전체 메서드가 아닌 특정 영역만 동기화
+		// 순서 
+		// 1. 스레드 1이 블록진입
+		// 스레드1 : synchronized(b) 블록에 들어가서 잠금 획득
+		//b.addMoney(1000) 호출 및 잔고 출력
+		// 블록을 벗어나면 잠금 해제
+		
+		//2. 스레드 2가 대기
+		// => synchronized(b) 블록에 들어가려 하지만, 스레드1이 잠금을 보유하고 있어 대기
+		
+		//3. 스레드 1실행 완료 후 스레드 3가 블록에 진입
+		// 스레드2 : synchronized(b) 블록에 들어가서 잠금 획득
+		//b.addMoney(1000) 호출 및 잔고 출력
+				// 블록을 벗어나면 잠금 해제
+		synchronized(b) {
 		try
 		{
 			for(int i = 0; i < 10; i++)
 			{
+				//Sleep(int mils)메서드는 주어진 시간 동안 스레드를 정지시키는 메서드
+				// 작업 속도 제어할 때 사용
 				Thread.sleep(1000);
 				b.addMoney(1000);
 				System.out.println(this.name + "현재 잔고 : " + b.getMoney());
@@ -57,7 +78,8 @@ class AddThread implements Runnable
 			e.printStackTrace();
 		}
 	}
-	
+}
+			
 }
 
 public class CH197 {
